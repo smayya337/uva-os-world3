@@ -3,7 +3,7 @@
 SECTIONS
 {
 	/* quest: kernel virtaddr */
-	. = 0; /* TODO: replace this */
+	. = 0xffff000000080000; /* TODO: replace this */
 	.text.boot : { *(.text.boot) }
 
 	/* include user text/data compiled as part of kernel 

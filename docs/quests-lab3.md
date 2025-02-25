@@ -58,9 +58,9 @@ MMU is on (see comments in `boot.S`).
 
 STEPS
 
-- Understand the kernel virtual memory layout.
+- Understand the kernel virtual memory layout. (DONE)
 
-- Revise the linker script (linker-rpi3qemu.ld) so that the kernel symbols start from the virtual address. 
+- Revise the linker script (linker-rpi3qemu.ld) so that the kernel symbols start from the virtual address. (DONE)
 
 - Understand boot.S and how it uses the two functions `create_kern_pgtables` and `create_kern_idmap`, implemented in vm.c
 Complete the latter two functions, as well as the few functions they invoke. 
