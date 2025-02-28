@@ -94,14 +94,14 @@ so that the user task can print a message.
 Reference output [here](user-helloworld-output.txt)
 
 - From kernel.c, understand the creation order of `kernel_main`, the idle task, 
-the init task, and `kernel_process()`. Understand how `copy_process()` is used. 
+the init task, and `kernel_process()`. Understand how `copy_process()` is used. (DONE)
 
 - CHECKPOINT. The "kern-1" task is created and kernel_process() is reached, printing "Kernel process started..."
   
 - Understand the relation between `kernel_process()` and `move_to_user_mode()`. 
-Complete `move_to_user_mode()`, which allows an existing kernel task (`kernel_process()`) to be lifted to user mode.
+Complete `move_to_user_mode()`, which allows an existing kernel task (`kernel_process()`) to be lifted to user mode. (DONE)
 
-- In `kernel_process()`, call `move_to_user_mode()` on `user_process_hello()`. 
+- In `kernel_process()`, call `move_to_user_mode()` on `user_process_hello()`. (DONE)
 
 - CHECKPOINT. Use GDB to trace the execution returning from `kernel_process()`, to `ret_from_fork`, to `kernel_exit()`, 
 to switch to EL0, and finally landing on the first instruction of the user task.

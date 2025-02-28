@@ -695,8 +695,8 @@ int move_to_user_mode(unsigned long start, unsigned long size, unsigned long pc)
     // now we hold current->mm->lock
 
 	regs->pstate = PSR_MODE_EL0t;
-	regs->pc = 0; /* TODO: replace this */
-	regs->sp = 0; /* TODO: replace this */
+	regs->pc = pc; /* TODO: replace this */
+	regs->sp = USER_VA_END; /* TODO: replace this */
 
     
     /* Map 2 code pages (instead of 1), so that we can experiment with 

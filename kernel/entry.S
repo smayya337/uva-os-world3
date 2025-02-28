@@ -235,6 +235,7 @@ el0_svc:
 	ldr	x16, [stbl, scno, lsl #3]		// otherwise, invoke the syscall table
 	// call sys_* routine
 	/* TODO: your code here */
+	blr x16
 	b	ret_from_syscall
 
 ni_sys:
