@@ -94,14 +94,14 @@ so that the user task can print a message.
 Reference output [here](user-helloworld-output.txt)
 
 - From kernel.c, understand the creation order of `kernel_main`, the idle task, 
-the init task, and `kernel_process()`. Understand how `copy_process()` is used. 
+the init task, and `kernel_process()`. Understand how `copy_process()` is used. (DONE)
 
 - CHECKPOINT. The "kern-1" task is created and kernel_process() is reached, printing "Kernel process started..."
   
 - Understand the relation between `kernel_process()` and `move_to_user_mode()`. 
-Complete `move_to_user_mode()`, which allows an existing kernel task (`kernel_process()`) to be lifted to user mode.
+Complete `move_to_user_mode()`, which allows an existing kernel task (`kernel_process()`) to be lifted to user mode. (DONE)
 
-- In `kernel_process()`, call `move_to_user_mode()` on `user_process_hello()`. 
+- In `kernel_process()`, call `move_to_user_mode()` on `user_process_hello()`. (DONE)
 
 - CHECKPOINT. Use GDB to trace the execution returning from `kernel_process()`, to `ret_from_fork`, to `kernel_exit()`, 
 to switch to EL0, and finally landing on the first instruction of the user task.
@@ -110,12 +110,12 @@ However, besides executing instructions, the user task cannot show any sign of l
 - Complete the syscall path for write(), which should call into our console driver (`console.c`) and send chars on UART: 
 (kuser_sys.S) `call_sys_write()` -> (vectors) `el0_sync` -> `el0_svc` -> `sys_call_table` -> `sys_write()` -> `consolewrite()`.
 Complete any missing code piece along the path.
-To debug, use GDB to set breakpoints at these code locations and see if your code reach there. 
+To debug, use GDB to set breakpoints at these code locations and see if your code reach there. (DONE)
 
 > At this time, our path of `call_sys_write()` is simplified, ignoring its `fd` argument.
 It only writes to the console "device file".
 
-- Understand console.c. Complete `consolewrite()`, which sends a sequence of chars to UART. 
+- Understand console.c. Complete `consolewrite()`, which sends a sequence of chars to UART. (DONE)
 
 - With the syscall path completed, the task should be able to print a message from user mode. 
 

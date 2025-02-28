@@ -74,7 +74,7 @@ int consolewrite(int user_src, uint64 src, int off, int n, void *content/*ignore
   //  would be better: copy all n chars in one copyin() call
   for(i = 0; i < n; i++){
     char c = 0;
-    if (either_copyin(0,0,0,0) == -1) /* TODO: replace this */
+    if (either_copyin(&c,user_src,src+i,1) == -1) /* TODO: replace this */
       break;
     uartputc(c);
   }
@@ -203,7 +203,7 @@ void consoleinit(void)
 // simplified: shortcut it to console 
 // quest: user helloworld   cf consolewrite() definition
 int sys_write(int fd /*ignored*/, unsigned long p /*user va*/, int n) { 
-  return 0; /* TODO: replace this */
+  return consolewrite(1, p, 0, n, 0); /* TODO: replace this */
 }
 
 // simplified: shortcut to console

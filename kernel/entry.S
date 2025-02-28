@@ -147,7 +147,7 @@ vectors:
 	ventry	error_invalid_el1h			// Error EL1h
 
 	// Synchronous 64-bit EL0 (used for syscalls)
-	ventry sync_invalid_el1h /* TODO: replace this */
+	ventry el0_sync /* TODO: replace this */
 	ventry	el0_irq					// IRQ 64-bit EL0
 	ventry	fiq_invalid_el0_64			// FIQ 64-bit EL0
 	ventry	error_invalid_el0_64			// Error 64-bit EL0
@@ -235,6 +235,7 @@ el0_svc:
 	ldr	x16, [stbl, scno, lsl #3]		// otherwise, invoke the syscall table
 	// call sys_* routine
 	/* TODO: your code here */
+	blr x16
 	b	ret_from_syscall
 
 ni_sys:

@@ -41,6 +41,7 @@ void kernel_process() {
 		good for simple tasks */ 
 
 	/* TODO: your code here */
+	move_to_user_mode(begin, end - begin, (unsigned long) user_process_hello - begin);
 
 	/* alternatively, call "move_to_user_mode_donut". maps usr pages on demand. 
 		can launch: donut (kuser), nes0 (binary elf embedded). */
