@@ -63,11 +63,11 @@ STEPS
 - Revise the linker script (linker-rpi3qemu.ld) so that the kernel symbols start from the virtual address. (DONE)
 
 - Understand boot.S and how it uses the two functions `create_kern_pgtables` and `create_kern_idmap`, implemented in vm.c
-Complete the latter two functions, as well as the few functions they invoke. 
+Complete the latter two functions, as well as the few functions they invoke. (DONE)
 
 - Complete boot.S: set up the kernel *virtual* stack and load the virtual address
 of `kernel_main`, so that the kernel execution can reach
-`kernel_main()`. As part of this, figure out the memory attributes: `MAIR_VALUE` defined in `mmu.h`.
+`kernel_main()`. As part of this, figure out the memory attributes: `MAIR_VALUE` defined in `mmu.h`. (DONE)
 
 The above should have set the kernel virtual address space (kernel VA).  
 Now the kernel will: boot on physical addr (PA), turn MMU on, continue on VA, 
