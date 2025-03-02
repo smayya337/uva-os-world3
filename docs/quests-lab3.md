@@ -127,22 +127,22 @@ OVERVIEW: now we have a user task running. We will support this task to do the f
 creating another user task. 
 The parent and child then print their own messages from the userspace. 
 
-- Understand `user_process_printers()` in `kuser.c`. This function is the body of the user tasks. It will fork a child task, and both the parent and child will print their own messages.
+- Understand `user_process_printers()` in `kuser.c`. This function is the body of the user tasks. It will fork a child task, and both the parent and child will print their own messages. (DONE)
 
-- Revisit and complete `copy_process()` in `sched.c` to enable forking of user tasks, in addition to its current capability of creating kernel tasks.
+- Revisit and complete `copy_process()` in `sched.c` to enable forking of user tasks, in addition to its current capability of creating kernel tasks. (DONE)
 
-- `copy_process()` will call `dup_current_virt_memory()` in `vm.c`. This function is crucial for handling the user virtual memory. Complete the implementation of `dup_current_virt_memory()`.
+- `copy_process()` will call `dup_current_virt_memory()` in `vm.c`. This function is crucial for handling the user virtual memory. Complete the implementation of `dup_current_virt_memory()`. (DONE)
 
 - Complete the syscall path for fork: 
     - (kuser_sys.S) `call_sys_fork()` 
     - (sys.c) `sys_call_table` 
     - `sys_fork()` 
-    - `copy_process()`.
+    - `copy_process()`. (DONE)
 
-- Similarly, complete the syscall path for `exit`, starting from `call_sys_exit()`.
+- Similarly, complete the syscall path for `exit`, starting from `call_sys_exit()`. (DONE)
 
 - In `kernel_process()`, call `move_to_user_mode()` on `user_process_printers()`.
-    - Ensure you understand how `move_to_user_mode()` works and what happens after `kernel_process()` returns.
+    - Ensure you understand how `move_to_user_mode()` works and what happens after `kernel_process()` returns. (DONE)
 
 Reference output [here](user-2-printers-output.txt)
 
