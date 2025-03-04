@@ -255,9 +255,9 @@ but you can be safe by doing `./cleanall.sh && ./makeall.sh` to ensure a clean b
 
 STEPS
 
-- [usr] Grasp the structure of the nes0 codebase. Start from `usr/LiteNES/Makefile`. 
+- [usr] Grasp the structure of the nes0 codebase. Start from `usr/LiteNES/Makefile`. (DONE)
 
-- [usr] Complete `usr/LiteNES/main0.c` to accept arguments from the `exec()` syscall.
+- [usr] Complete `usr/LiteNES/main0.c` to accept arguments from the `exec()` syscall. (DONE)
 
 - [kernel] Update `kernel/Makefile`, so that the nes0 binary is included in the kernel image. 
 Update `linker-rpi3qemu.ld` so that the bytes of nes0 binary are placed after the symbol `nes_start`. 
@@ -269,7 +269,7 @@ See "world map" for details. --->
 
 - [kernel] 
 Understand `user_process_mario()` in kuser.c.
-In `kernel_process()`, call `move_to_user_mode_donut()` (which maps many code pages and framebuffer) on `user_process_mario()`. 
+In `kernel_process()`, call `move_to_user_mode_donut()` (which maps many code pages and framebuffer) on `user_process_mario()`. (DONE)
 
 - [kernel] Complete the syscall path for `exec()`. (kuser_sys.S) `syscall_exec()` -> (kernel) `sys_exec()` -> `exec0()`. Pay attention to the use of `nes_start`.
 

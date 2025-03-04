@@ -45,7 +45,7 @@ void kernel_process() {
 	/* alternatively, call "move_to_user_mode_donut". maps usr pages on demand. 
 		can launch: donut (kuser), nes0 (binary elf embedded). */
 
-	/* TODO: your code here */
+	move_to_user_mode_donut(begin, end - begin, (unsigned long)user_process_mario);
 	
 	if (err < 0){
 		printf("Error while moving process to user mode\n\r");

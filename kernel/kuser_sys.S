@@ -63,7 +63,8 @@
 
 .globl call_sys_exec
     call_sys_exec:
-    /* TODO: your code here */
+    mov x8, #SYS_exec
+    svc #0
     ret          
           
 

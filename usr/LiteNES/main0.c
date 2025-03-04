@@ -45,13 +45,17 @@ int main(int argc, char *argv[])
     for (int i=0; i<argc; i++)
       printf("arg %d: %s\n", i, argv[i]); // dbg
 
-    unsigned long fb = 0; /* TODO: replace this */
+    unsigned long fb = (unsigned long) argv[1];
     // we don't have sscanf/atol16 (no libc). 
     // we expect config.fb is around 0x3c00_0000, so it SHOULD not overflow
     // sanity check 
     assert(fb > 0x30000000 && fb < 0x40000000); 
     cfg.fb = (char *)fb; 
-    /* TODO: your code here */
+    cfg.vwidth = argv[2];
+    cfg.vheight = argv[3];
+    cfg.pitch = argv[4];
+    cfg.offsetx = argv[5];
+    cfg.offsety = argv[6];
         
     if (fce_load_rom(rom) != 0) { // will load the built-in rom
         fprintf(stderr, "Invalid or unsupported rom.\n");
