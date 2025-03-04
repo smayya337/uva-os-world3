@@ -249,11 +249,11 @@ int dup_current_virt_memory(struct mm_struct *dstmm) {
 		unsigned long perm = PTE_TO_PERM(*pte); 
 		// NB: "i" is a userva in the src address space. this assumes the src's userva is active
 		V("dup user page at userva %lx", i);  
-		void *kernel_va = allocate_user_page_mm(dstmm->kernel_pages[i / PAGE_SIZE], i * PAGE_SIZE, 0); /* TODO: replace this */
+		void *kernel_va = allocate_user_page_mm(dstmm, i * PAGE_SIZE, perm); /* TODO: replace this */
 		if(kernel_va == 0)
 			goto no_mem;  
 		// copy the page content from the src to the dst. be careful with the memmove() arg order
-		memmove(kernel_va, srcmm->kernel_pages[i / PAGE_SIZE], PAGE_SIZE); /* TODO: replace this */
+		memmove(kernel_va, (const void *) srcmm->kernel_pages[i / PAGE_SIZE], PAGE_SIZE); /* TODO: replace this */
 	}
 
 	// copy user stack from src to dst. 
@@ -261,12 +261,12 @@ int dup_current_virt_memory(struct mm_struct *dstmm) {
 	for (unsigned long i = PGROUNDDOWN(regs->sp); i < USER_VA_END; i+=PAGE_SIZE) {
 		unsigned long *pte = map_page(srcmm, i, 0/*just locate*/, 0/*no alloc*/, 0); 
 		BUG_ON(!pte);  // bad user mapping (stack)?
-		void *kernel_va = allocate_user_page_mm(dstmm->kernel_pages[i / PAGE_SIZE], i * PAGE_SIZE, 0); /* TODO: replace this */
+		void *kernel_va = allocate_user_page_mm(dstmm, i * PAGE_SIZE, PTE_TO_PERM(*pte)); /* TODO: replace this */
 		if(kernel_va == 0)
 			goto no_mem; 
 		// NB: "i" is a userva in the src address space. this assumes the src's userva is active
 		V("kern va %lx i %x", kernel_va, i);
-		memmove(kernel_va, srcmm->kernel_pages[i / PAGE_SIZE], PAGE_SIZE); /* TODO: replace this */
+		memmove(kernel_va, (const void *) srcmm->kernel_pages[i / PAGE_SIZE], PAGE_SIZE); /* TODO: replace this */
 	}
 
 	dstmm->sz = srcmm->sz; dstmm->codesz = srcmm->codesz;
