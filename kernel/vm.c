@@ -561,7 +561,7 @@ unsigned long growproc (struct mm_struct *mm, int incr) {
 	}
 
 	if (incr >= 0) {		// brk grows
-		for (; ; ) { /* TODO: replace this */
+		for (; sz1 < sz+incr; sz1 += PAGE_SIZE) {
 			kva = allocate_user_page_mm(mm, sz1, MM_AP_RW | MM_XN); 
 			if (!kva) {
 				W("allocate_user_page_mm failed");

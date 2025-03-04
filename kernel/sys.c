@@ -100,7 +100,7 @@ unsigned long sys_sbrk(int incr) {
 		release(&myproc()->mm->lock); return sz;
 	}
 
-	sz = growproc(myproc()->mm, 0); /* TODO: replace this */
+	sz = growproc(myproc()->mm, incr);
 	release(&myproc()->mm->lock);
 	if (sz == (unsigned long)-1) 
 		W("sys_sbrk failed. requestsed brk %lx", sz0 + incr); 

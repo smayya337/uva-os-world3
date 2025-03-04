@@ -88,11 +88,11 @@ void user_donut(unsigned char *fb /*usr VA*/, int pitch) {
   
     // for usage of sbrk(), cf "man sbrk" also search for "sbrk" in usertests.c
     b = call_sys_sbrk(0); /* TODO: replace this */
-    if (b) { /* TODO: replace this */
+    if (b == -1) {
       myprintf("sbrk for b failed\n"); call_sys_exit(-1); 
     }
     z = call_sys_sbrk(0); /* TODO: replace this */
-    if (z) { /* TODO: replace this */
+    if (z == -1) {
       myprintf("sbrk for z failed\n"); call_sys_exit(-1); 
     }
 
@@ -162,6 +162,7 @@ void user_donut(unsigned char *fb /*usr VA*/, int pitch) {
         // user_flush_dcache_range(fb, (char*)fb + NN *pitch);
         
         /* TODO: your code here */
+        
         // not as fast as expected? possible reason: this code is compiled -0O
     }
 }

@@ -764,7 +764,7 @@ int move_to_user_mode_donut(unsigned long start, unsigned long size, unsigned lo
     unsigned long remain=size; 
     void *code_page; 
     unsigned long cnt=0;
-    while (0) { /* TODO: replace this */
+    while (remain>0) {
         code_page = allocate_user_page_mm(cur->mm, cnt/*va*/, MMU_PTE_FLAGS | MM_AP_RW);
         if (code_page == 0)	{ release(&cur->mm->lock); BUG(); return -1;} // XXX shall reverse mappings
         int n = MIN(remain,PAGE_SIZE); 
@@ -786,7 +786,7 @@ int move_to_user_mode_donut(unsigned long start, unsigned long size, unsigned lo
         // mmap fb area to user VM    
         for (; fb_pa < fb_pa_end; fb_pa += PAGE_SIZE) {
             unsigned long * ret = map_page(cur->mm, 
-                0,0, /* TODO: replace this */
+                PA2VA(fb_pa),fb_pa,
                 1 /* alloc pgtable on demand*/, 
                 MMU_PTE_FLAGS | MM_AP_RW /* perm */); 
             BUG_ON(!ret);     

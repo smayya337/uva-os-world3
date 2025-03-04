@@ -297,13 +297,14 @@ int sys_sleep(int ms) {
 	unsigned long c0; 
 
 	/* TODO: your code here */
+	TKernelTimerHandler *h;
 
 	if (ms==0) return 0; // shortcut it
 
 	acquire(&timerlock); 
 	c0 = current_counter();
 	t = ktimer_start_nolock(ms, 
-		0, /* TODO: replace this */
+		h,
 		0/*para*/, 0/*context*/); 
 	if (t<0) {release(&timerlock); BUG(); return -1;}
 	// we still hold timerlock, so timer irq hanler won't race w/ us
@@ -314,7 +315,7 @@ int sys_sleep(int ms) {
             release(&timerlock);
             return -1;
 		}
-		sleep(0, 0); /* TODO: replace this */
+		sleep(0, &timerlock); /* TODO: replace this */
 	}
 	release(&timerlock); 
 	return 0; 
